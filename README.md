@@ -1,27 +1,26 @@
-# -Kasir-Sederhana-OOP-CPP
 
 
 ---
 
-# 📌 PROGRAM KASIR SEDERHANA - C++ OOP
+# 🧾 SIMPLE CASHIER PROGRAM - C++ OOP
 
 ---
 
-# A. SYNTAX KODE LENGKAP (main.cpp)
+A. COMPLETE SYNTAX CODE (main.cpp)
 
 ```cpp
 /*
 ===================================================
-PROGRAM KASIR SEDERHANA - C++ OOP
+SIMPLE CASHIER PROGRAM - C++ OOP
 ===================================================
-Fungsi :
-- Input nama barang, harga, jumlah
-- Hitung total belanja
-- Beri diskon otomatis
-- Tampilkan struk belanja
+Features:
+- Input item name, price, quantity
+- Calculate total shopping
+- Apply automatic discount
+- Display shopping receipt
 
-Dibuat oleh : Faris
-Tanggal     : 25 Juni 2026
+Created by : Faris
+Date       : June 25, 2026
 ===================================================
 */
 
@@ -29,104 +28,104 @@ Tanggal     : 25 Juni 2026
 #include <iomanip>
 using namespace std;
 
-class Kasir {
+class Cashier {
 private:
-    string namaBarang;
-    int harga;
-    int jumlah;
+    string itemName;
+    int price;
+    int quantity;
     int total;
-    double diskon;
-    double totalBayar;
+    double discount;
+    double finalTotal;
 
 public:
-    Kasir() {
-        namaBarang = "";
-        harga = 0;
-        jumlah = 0;
+    Cashier() {
+        itemName = "";
+        price = 0;
+        quantity = 0;
         total = 0;
-        diskon = 0;
-        totalBayar = 0;
+        discount = 0;
+        finalTotal = 0;
         cout << "==========================================" << endl;
-        cout << "   🧾 PROGRAM KASIR SEDERHANA v1.0       " << endl;
+        cout << "   🧾 SIMPLE CASHIER PROGRAM v1.0        " << endl;
         cout << "==========================================\n" << endl;
     }
 
     void inputData() {
-        cout << "📦 Masukkan Nama Barang : ";
+        cout << "📦 Enter Item Name      : ";
         cin.ignore();
-        getline(cin, namaBarang);
+        getline(cin, itemName);
 
-        cout << "💰 Masukkan Harga       : Rp ";
-        cin >> harga;
+        cout << "💰 Enter Price          : Rp ";
+        cin >> price;
 
-        cout << "🔢 Masukkan Jumlah      : ";
-        cin >> jumlah;
+        cout << "🔢 Enter Quantity       : ";
+        cin >> quantity;
 
         cout << endl;
     }
 
-    int hitungTotal() {
-        total = harga * jumlah;
+    int calculateTotal() {
+        total = price * quantity;
         return total;
     }
 
-    double hitungDiskon() {
+    double calculateDiscount() {
         if (total >= 100000) {
-            diskon = total * 0.10;
-            cout << "🎉 Selamat! Anda mendapat diskon 10%" << endl;
+            discount = total * 0.10;
+            cout << "🎉 Congratulations! You get 10% discount" << endl;
         } else if (total >= 50000) {
-            diskon = total * 0.05;
-            cout << "🎉 Selamat! Anda mendapat diskon 5%" << endl;
+            discount = total * 0.05;
+            cout << "🎉 Congratulations! You get 5% discount" << endl;
         } else {
-            diskon = 0;
-            cout << "😊 Belum dapat diskon. Belanja minimal Rp50.000" << endl;
+            discount = 0;
+            cout << "😊 No discount. Minimum purchase Rp50.000" << endl;
         }
-        return diskon;
+        return discount;
     }
 
-    double hitungTotalBayar() {
-        totalBayar = total - diskon;
-        return totalBayar;
+    double calculateFinalTotal() {
+        finalTotal = total - discount;
+        return finalTotal;
     }
 
-    void tampilkanStruk() {
+    void displayReceipt() {
         cout << "\n==========================================" << endl;
-        cout << "            🧾 STRUK BELANJA            " << endl;
+        cout << "            🧾 SHOPPING RECEIPT          " << endl;
         cout << "==========================================" << endl;
-        cout << "  Nama Barang  : " << namaBarang << endl;
-        cout << "  Harga Satuan : Rp " << harga << endl;
-        cout << "  Jumlah       : " << jumlah << " buah" << endl;
+        cout << "  Item Name     : " << itemName << endl;
+        cout << "  Unit Price    : Rp " << price << endl;
+        cout << "  Quantity      : " << quantity << " pcs" << endl;
         cout << "------------------------------------------" << endl;
-        cout << "  Total        : Rp " << total << endl;
-        cout << "  Diskon       : Rp " << diskon << endl;
+        cout << "  Total         : Rp " << total << endl;
+        cout << "  Discount      : Rp " << discount << endl;
         cout << "------------------------------------------" << endl;
-        cout << "  TOTAL BAYAR  : Rp " << totalBayar << endl;
+        cout << "  FINAL TOTAL   : Rp " << finalTotal << endl;
         cout << "==========================================" << endl;
-        cout << "  Terima kasih sudah berbelanja! 🛒   " << endl;
+        cout << "  Thank you for shopping! 🛒             " << endl;
         cout << "==========================================\n" << endl;
     }
 
-    void proses() {
+    void process() {
         inputData();
-        hitungTotal();
-        hitungDiskon();
-        hitungTotalBayar();
-        tampilkanStruk();
+        calculateTotal();
+        calculateDiscount();
+        calculateFinalTotal();
+        displayReceipt();
     }
 };
 
 int main() {
-    Kasir kasir1;
-    kasir1.proses();
+    Cashier cashier1;
+    cashier1.process();
     return 0;
 }
 ```
 
 ---
 
-B. PENJELASAN KODE (Terpisah)
+B. CODE EXPLANATION (Separated)
 
-1. Header dan Library
+1. Header and Library
 
 ```cpp
 #include <iostream>
@@ -134,16 +133,16 @@ B. PENJELASAN KODE (Terpisah)
 using namespace std;
 ```
 
-· iostream → untuk input/output (cin, cout)
-· iomanip → untuk formatting tampilan (opsional, bisa dipakai kalau mau bikin tabel)
-· using namespace std → biar gak perlu nulis std:: setiap kali
+· iostream → for input/output (cin, cout)
+· iomanip → for formatting output (optional, used for creating tables)
+· using namespace std → allows us to write cout instead of std::cout
 
 ---
 
-2. Class Kasir
+2. Cashier Class
 
 ```cpp
-class Kasir {
+class Cashier {
 private:
     ...
 public:
@@ -151,231 +150,241 @@ public:
 };
 ```
 
-· Class adalah cetakan untuk membuat objek.
-· private → data/property yang hanya bisa diakses dari dalam class (encapsulation).
-· public → method/fungsi yang bisa diakses dari luar class.
+· Class is a blueprint for creating objects.
+· private → attributes that can only be accessed from inside the class (encapsulation).
+· public → methods/functions that can be accessed from outside the class.
 
 ---
 
-3. Atribut (Private)
+3. Attributes (Private)
 
 ```cpp
 private:
-    string namaBarang;
-    int harga;
-    int jumlah;
+    string itemName;
+    int price;
+    int quantity;
     int total;
-    double diskon;
-    double totalBayar;
+    double discount;
+    double finalTotal;
 ```
 
-· namaBarang → nama barang (bisa pakai spasi)
-· harga → harga satuan barang
-· jumlah → jumlah barang yang dibeli
-· total → total harga sebelum diskon
-· diskon → nilai diskon dalam rupiah
-· totalBayar → total yang harus dibayar setelah diskon
+· itemName → name of the item (can contain spaces)
+· price → unit price of the item
+· quantity → number of items purchased
+· total → total price before discount
+· discount → discount amount in rupiah
+· finalTotal → final amount to be paid after discount
 
 ---
 
 4. Constructor
 
 ```cpp
-Kasir() {
-    namaBarang = "";
-    harga = 0;
-    jumlah = 0;
+Cashier() {
+    itemName = "";
+    price = 0;
+    quantity = 0;
     total = 0;
-    diskon = 0;
-    totalBayar = 0;
+    discount = 0;
+    finalTotal = 0;
     cout << "==========================================" << endl;
-    cout << "   🧾 PROGRAM KASIR SEDERHANA v1.0       " << endl;
+    cout << "   🧾 SIMPLE CASHIER PROGRAM v1.0        " << endl;
     cout << "==========================================\n" << endl;
 }
 ```
 
-· Constructor adalah method yang otomatis dijalankan saat objek dibuat.
-· Digunakan untuk memberi nilai awal (inisialisasi) ke semua atribut.
-· Juga menampilkan header program.
+· Constructor is a method that runs automatically when an object is created.
+· Used to initialize all attributes with default values.
+· Also displays the program header.
 
 ---
 
-5. Method inputData()
+5. inputData() Method
 
 ```cpp
 void inputData() {
-    cout << "📦 Masukkan Nama Barang : ";
+    cout << "📦 Enter Item Name      : ";
     cin.ignore();
-    getline(cin, namaBarang);
+    getline(cin, itemName);
 
-    cout << "💰 Masukkan Harga       : Rp ";
-    cin >> harga;
+    cout << "💰 Enter Price          : Rp ";
+    cin >> price;
 
-    cout << "🔢 Masukkan Jumlah      : ";
-    cin >> jumlah;
+    cout << "🔢 Enter Quantity       : ";
+    cin >> quantity;
 
     cout << endl;
 }
 ```
 
-· cin.ignore() → membersihkan buffer agar getline() bisa membaca spasi.
-· getline(cin, namaBarang) → membaca teks yang mengandung spasi.
-· cin >> harga dan cin >> jumlah → input angka.
+· cin.ignore() → clears the input buffer so getline() can read spaces.
+· getline(cin, itemName) → reads text that contains spaces.
+· cin >> price and cin >> quantity → input numbers.
 
 ---
 
-6. Method hitungTotal()
+6. calculateTotal() Method
 
 ```cpp
-int hitungTotal() {
-    total = harga * jumlah;
+int calculateTotal() {
+    total = price * quantity;
     return total;
 }
 ```
 
-· Menghitung total belanja dengan rumus harga * jumlah.
-· Hasil disimpan di atribut total dan dikembalikan.
+· Calculates total shopping amount using formula price * quantity.
+· Stores result in the total attribute and returns it.
 
 ---
 
-7. Method hitungDiskon()
+7. calculateDiscount() Method
 
 ```cpp
-double hitungDiskon() {
+double calculateDiscount() {
     if (total >= 100000) {
-        diskon = total * 0.10;
-        cout << "🎉 Selamat! Anda mendapat diskon 10%" << endl;
+        discount = total * 0.10;
+        cout << "🎉 Congratulations! You get 10% discount" << endl;
     } else if (total >= 50000) {
-        diskon = total * 0.05;
-        cout << "🎉 Selamat! Anda mendapat diskon 5%" << endl;
+        discount = total * 0.05;
+        cout << "🎉 Congratulations! You get 5% discount" << endl;
     } else {
-        diskon = 0;
-        cout << "😊 Belum dapat diskon. Belanja minimal Rp50.000" << endl;
+        discount = 0;
+        cout << "😊 No discount. Minimum purchase Rp50.000" << endl;
     }
-    return diskon;
+    return discount;
 }
 ```
 
-· Logika diskon:
-  · Total ≥ 100.000 → diskon 10%
-  · Total ≥ 50.000 → diskon 5%
-  · Total < 50.000 → tidak dapat diskon
+· Discount logic:
+  · Total ≥ 100.000 → 10% discount
+  · Total ≥ 50.000 → 5% discount
+  · Total < 50.000 → no discount
 
 ---
 
-8. Method hitungTotalBayar()
+8. calculateFinalTotal() Method
 
 ```cpp
-double hitungTotalBayar() {
-    totalBayar = total - diskon;
-    return totalBayar;
+double calculateFinalTotal() {
+    finalTotal = total - discount;
+    return finalTotal;
 }
 ```
 
-· Menghitung total yang harus dibayar setelah dikurangi diskon.
+· Calculates the final amount to be paid after deducting the discount.
 
 ---
 
-9. Method tampilkanStruk()
+9. displayReceipt() Method
 
 ```cpp
-void tampilkanStruk() {
+void displayReceipt() {
     cout << "\n==========================================" << endl;
-    cout << "            🧾 STRUK BELANJA            " << endl;
-    // ... (cetak semua data)
+    cout << "            🧾 SHOPPING RECEIPT          " << endl;
+    // ... (print all data)
 }
 ```
 
-· Menampilkan struk belanja yang rapi dengan semua informasi.
+· Displays a neat and professional shopping receipt.
 
 ---
 
-10. Method proses()
+10. process() Method
 
 ```cpp
-void proses() {
+void process() {
     inputData();
-    hitungTotal();
-    hitungDiskon();
-    hitungTotalBayar();
-    tampilkanStruk();
+    calculateTotal();
+    calculateDiscount();
+    calculateFinalTotal();
+    displayReceipt();
 }
 ```
 
-· Memanggil semua method secara berurutan.
-· Memudahkan di main() karena cukup panggil proses() sekali.
+· Calls all methods in the correct sequence.
+· Makes it easier to run the program by just calling process() once.
 
 ---
 
-11. Fungsi main()
+11. main() Function
 
 ```cpp
 int main() {
-    Kasir kasir1;
-    kasir1.proses();
+    Cashier cashier1;
+    cashier1.process();
     return 0;
 }
 ```
 
-· Membuat objek kasir1 dari class Kasir.
-· Memanggil method proses() untuk menjalankan seluruh program.
+· Creates an object cashier1 from the Cashier class.
+· Calls the process() method to run the entire program.
 
 ---
 
-C. CONTOH OUTPUT PROGRAM
+C. SAMPLE OUTPUT
 
-Input dari User:
-
-```
-📦 Masukkan Nama Barang : Buku Tulis
-💰 Masukkan Harga       : Rp 5000
-🔢 Masukkan Jumlah      : 25
-```
-
-Proses Diskon:
+Input from User:
 
 ```
-🎉 Selamat! Anda mendapat diskon 5%
+📦 Enter Item Name      : Notebook
+💰 Enter Price          : Rp 5000
+🔢 Enter Quantity       : 25
 ```
 
-Output Struk:
+Discount Process:
+
+```
+🎉 Congratulations! You get 5% discount
+```
+
+Receipt Output:
 
 ```
 ==========================================
-   🧾 PROGRAM KASIR SEDERHANA v1.0       
+   🧾 SIMPLE CASHIER PROGRAM v1.0        
 ==========================================
 
-📦 Masukkan Nama Barang : Buku Tulis
-💰 Masukkan Harga       : Rp 5000
-🔢 Masukkan Jumlah      : 25
+📦 Enter Item Name      : Notebook
+💰 Enter Price          : Rp 5000
+🔢 Enter Quantity       : 25
 
-🎉 Selamat! Anda mendapat diskon 5%
+🎉 Congratulations! You get 5% discount
 
 ==========================================
-            🧾 STRUK BELANJA            
+            🧾 SHOPPING RECEIPT          
 ==========================================
-  Nama Barang  : Buku Tulis
-  Harga Satuan : Rp 5000
-  Jumlah       : 25 buah
+  Item Name     : Notebook
+  Unit Price    : Rp 5000
+  Quantity      : 25 pcs
 ------------------------------------------
-  Total        : Rp 125000
-  Diskon       : Rp 6250
+  Total         : Rp 125000
+  Discount      : Rp 6250
 ------------------------------------------
-  TOTAL BAYAR  : Rp 118750
+  FINAL TOTAL   : Rp 118750
 ==========================================
-  Terima kasih sudah berbelanja! 🛒  
+  Thank you for shopping! 🛒             
 ==========================================
 ```
 
 ---
 
-D. KONSEP OOP YANG DIGUNAKAN
+D. OOP CONCEPTS USED
 
-Konsep Penjelasan
-Class class Kasir → cetakan untuk membuat objek
-Object Kasir kasir1; → objek nyata dari class
-Encapsulation Atribut dibuat private agar tidak bisa diakses langsung dari luar
-Constructor Kasir() → otomatis jalan saat objek dibuat
-Method Fungsi-fungsi di dalam class → inputData(), hitungTotal(), dll
-Abstraction Method proses() menyembunyikan detail kompleksitas dari main()
+Concept Explanation
+Class class Cashier → blueprint for creating objects
+Object Cashier cashier1; → real instance of the class
+Encapsulation Attributes are declared private so they cannot be accessed directly from outside
+Constructor Cashier() → automatically executed when an object is created
+Method Functions inside the class → inputData(), calculateTotal(), etc.
+Abstraction The process() method hides the complexity from main()
 
+---
+
+E. HOW TO RUN & COMPILE
+
+```bash
+# Compile
+g++ -o cashier main.cpp
+
+# Run
+./cashier
